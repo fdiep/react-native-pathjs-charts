@@ -129,14 +129,41 @@ export default class BarChart extends Component {
       let colorVariationVal = numDataGroups > 1 ? numDataGroups : 3
       let color = this.color(i % colorVariationVal)
       let stroke = Colors.darkenColor(color)
+      let currVal = accessor(c.item)
+      let labelPos = labelOffset + chartArea.y.min
+      let valueLabelPos = (currVal >= 0) ? chart.scale(currVal) - options.margin.top : chart.scale(0) - options.margin.top
+
+      // switch positions for negative values
+      if (currVal <= 0) {
+        const tempVar = labelPos
+        labelPos = valueLabelPos
+        valueLabelPos = tempVar
+      }
+
+      if (currVal > 0) {
+        labelPos = chart.scale(0) + labelOffset
+      }
       return (
                 <G key={'lines' + i}>
+                    <Text fontFamily={textStyle.fontFamily}
+                      fontSize={textStyle.fontSize}
+                      fontWeight={textStyle.fontWeight}
+                      fontStyle={textStyle.fontStyle}
+                      fill={textStyle.fill}
+                      x={c.line.centroid[0]}
+                      y={valueLabelPos}
+                      originX={c.line.centroid[0]}
+                      originY={valueLabelPos}
+                      rotate={textStyle.rotate}
+                      textAnchor="middle">
+                      {c.item.valueLabel}
+                    </Text>
                     <Path  d={ c.line.path.print() } stroke={stroke} fill={color}/>
                     {options.axisX.showLabels ?
                         <Text fontFamily={textStyle.fontFamily}
                           fontSize={textStyle.fontSize} fontWeight={textStyle.fontWeight} fontStyle={textStyle.fontStyle}
-                          fill={textStyle.fill} x={c.line.centroid[0]} y={labelOffset + chartArea.y.min}
-                          originX={c.line.centroid[0]} originY={labelOffset + chartArea.y.min} rotate={textStyle.rotate}
+                          fill={textStyle.fill} x={c.line.centroid[0]} y={labelPos}
+                          originX={c.line.centroid[0]} originY={labelPos} rotate={textStyle.rotate}
                           textAnchor="middle">
                           {c.item.name}
                         </Text>
