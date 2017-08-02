@@ -134,13 +134,13 @@ export default class BarChart extends Component {
       let valueLabelPos = (currVal >= 0) ? chart.scale(currVal) - options.margin.top : chart.scale(0) - options.margin.top
 
       // switch positions for negative values
-      if (currVal <= 0) {
+      if (currVal < 0) {
         const tempVar = labelPos
         labelPos = valueLabelPos
         valueLabelPos = tempVar
       }
 
-      if (currVal > 0) {
+      if (currVal >= 0) {
         labelPos = chart.scale(0) + labelOffset
       }
       return (
