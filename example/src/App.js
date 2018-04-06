@@ -26,10 +26,13 @@ import SideMenu from 'react-native-side-menu'
 import BarChartColumnBasic from './bar/BarChartColumnBasic'
 
 import PieChartBasic from './pie/PieChartBasic'
+import PieChartBasicAnimation from './pie/PieChartBasicAnimation'
 
 import StockLineChartBasic from './stockline/StockLineChartBasic'
 import StockLineChartStaticTickLabels from './stockline/StockLineChartStaticTickLabels'
 import StockLineChartDynamicTickLabels from './stockline/StockLineChartDynamicTickLabels'
+import StockLineChartDynamicLineRendering from './stockline/StockLineChartDynamicLineRendering'
+import StockLineChartGesture from './stockline/StockLineChartGesture'
 
 import SmoothLineChartBasic from './smoothline/SmoothLineChartBasic'
 import SmoothLineChartRegions from './smoothline/SmoothLineChartRegions'
@@ -42,7 +45,6 @@ import RadarChartBasic from './radar/RadarChartBasic'
 import TreeChartBasic from './tree/TreeChartBasic'
 
 import Home from './Home'
-import 'babel-polyfill'
 
 const styles = StyleSheet.create({
   container: {
@@ -71,6 +73,10 @@ class HomeScreen extends React.Component {
           title="Pie - Basic"
         />
         <Button
+          onPress={() => navigate('PieChartBasicAnimation')}
+          title="Pie - Basic Animation"
+        />
+        <Button
           onPress={() => navigate('StockLineChartBasic')}
           title="StockLine - Basic"
         />
@@ -81,6 +87,14 @@ class HomeScreen extends React.Component {
         <Button
           onPress={() => navigate('StockLineChartDynamicTickLabels')}
           title="StockLine - Dynamic Labels"
+        />
+        <Button
+          onPress={() => navigate('StockLineChartDynamicLineRendering')}
+          title="StockLine - Dynamic Line Rendering"
+        />
+        <Button
+          onPress={() => navigate('StockLineChartGesture')}
+          title="StockLine - Gesture"
         />
         <Button
           onPress={() => navigate('SmoothLineChartBasic')}
@@ -115,9 +129,12 @@ const App = StackNavigator({
   Home: { screen: HomeScreen },
   BarChartColumnBasic: { screen: BarChartColumnBasic },
   PieChartBasic: { screen: PieChartBasic },
+  PieChartBasicAnimation: { screen: PieChartBasicAnimation },
   StockLineChartBasic: { screen: StockLineChartBasic },
   StockLineChartStaticTickLabels: { screen: StockLineChartStaticTickLabels },
   StockLineChartDynamicTickLabels: { screen: StockLineChartDynamicTickLabels },
+  StockLineChartDynamicLineRendering: { screen: StockLineChartDynamicLineRendering },
+  StockLineChartGesture: { screen: StockLineChartGesture },
   SmoothLineChartBasic: { screen: SmoothLineChartBasic },
   SmoothLineChartRegions: { screen: SmoothLineChartRegions },
   SmoothLineChartRegionsExtended: { screen: SmoothLineChartRegionsExtended },

@@ -22,8 +22,8 @@ import Svg,{ G, Path, Text } from 'react-native-svg'
 import { Colors, Options, fontAdapt, cyclic, color, identity } from './util'
 import _ from 'lodash'
 import Axis from './Axis'
+import GridAxis from './GridAxis'
 const Bar = require('paths-js/bar')
-import 'babel-polyfill'
 
 export default class BarChart extends Component {
 
@@ -174,8 +174,9 @@ export default class BarChart extends Component {
 
     return (<Svg width={options.width} height={options.height}>
               <G x={options.margin.left} y={options.margin.top}>
-                <Axis scale={chart.scale} options={options.axisY} chartArea={chartArea} />
+                <GridAxis scale={chart.scale} options={options.axisY} chartArea={chartArea} />
                 {lines}
+                <Axis scale={chart.scale} options={options.axisY} chartArea={chartArea} />
               </G>
             </Svg>)
   }
